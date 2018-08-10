@@ -1,7 +1,6 @@
 #!/bin/bash
 
 GLOBAL_URL_IMAGE=`/usr/bin/curl -s https://www.nationalgeographic.com/photography/photo-of-the-day/ | /bin/grep 'property="og:image"' | /usr/bin/cut -d "\"" -f 4`
-GLOBAL_FILE_BACKGROUND='/usr/share/backgrounds/national.geographic-photo.of.the.day.jpg'
 
 if [ -z "$GLOBAL_URL_IMAGE" ]
 then
@@ -9,7 +8,7 @@ then
  exit 1
 fi
 
-curl -s $GLOBAL_URL_IMAGE > "$GLOBAL_FILE_BACKGROUND"
+curl -s $GLOBAL_URL_IMAGE > "$CONFIG_FILE_IMAGE"
 
 if [ $? -ne 0 ]
 then
