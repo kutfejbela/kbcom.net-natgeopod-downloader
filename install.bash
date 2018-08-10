@@ -19,3 +19,17 @@ source \"\$CONFIG_FOLDER_MAIN/etc/kbcom.net-natgeopod-downloader.bash.conf\"
 " 1>"run.bash"
 
 /bin/chmod a+x "run.bash"
+
+echo "[Unit]
+Description=National Geographic - photo of the day downloader
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=$(/bin/pwd)/run.bash
+
+[Install]
+WantedBy=multi-user.target
+" 1>"local/etc/systemd/natgeopod-downloader.service"

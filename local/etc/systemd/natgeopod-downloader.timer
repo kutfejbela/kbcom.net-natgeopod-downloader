@@ -1,0 +1,9 @@
+[Unit]
+Description=Run 'natgeopod-downloader.service' four hourly and on boot
+
+[Timer]
+OnBootSec=10min
+OnUnitActiveSec=4h
+
+[Install]
+WantedBy=timers.target
