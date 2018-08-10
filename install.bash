@@ -44,6 +44,6 @@ ExecStart=$GLOBAL_FOLDER_SCRIPT/run.bash
 WantedBy=multi-user.target
 " 1>"$GLOBAL_FOLDER_SCRIPT/local/etc/systemd/natgeopod-downloader.service"
 
-/bin/ln -sf "$GLOBAL_FOLDER_SCRIPT"/local/etc/systemd/natgeopod-downloader.* /lib/systemd/system
+/bin/ln -s -i "$GLOBAL_FOLDER_SCRIPT"/local/etc/systemd/natgeopod-downloader.* /lib/systemd/system
 
 /bin/systemctl enable --now natgeopod-downloader.timer
