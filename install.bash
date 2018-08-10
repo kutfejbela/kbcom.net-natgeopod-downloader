@@ -1,5 +1,7 @@
 #!/bin/bash
 
+GLOBAL_FOLDER_SCRIPT=$(/usr/bin/dirname "$0")
+
 read -e -p "Local image file: " -i '/usr/share/backgrounds/national.geographic-photo.of.the.day.jpg' GLOBAL_FILE_IMAGE
 
 /bin/mkdir etc
@@ -11,7 +13,7 @@ export CONFIG_FILE_IMAGE=\"$GLOBAL_FILE_IMAGE\"
 
 echo "#!/bin/bash
 
-CONFIG_FOLDER_MAIN=\"$(/bin/pwd)\"
+CONFIG_FOLDER_MAIN=\"$GLOBAL_FOLDER_SCRIPT\"
 
 source \"\$CONFIG_FOLDER_MAIN/etc/kbcom.net-natgeopod-downloader.bash.conf\"
 
@@ -28,8 +30,12 @@ After=network-online.target
 [Service]
 Type=oneshot
 RemainAfterExit=true
-ExecStart=$(/bin/pwd)/run.bash
+ExecStart=$GLOBAL_FOLDER_SCRIPT/run.bash
 
 [Install]
 WantedBy=multi-user.target
 " 1>"local/etc/systemd/natgeopod-downloader.service"
+
+/bin/ln -s $GLOBAL_FOLDER_SCRIPT/local/etc/systemd/natgeopod-downloader.service /lib/systemd/system
+
+/bin/systemctl enable --now natgeopod-downloader.timer
