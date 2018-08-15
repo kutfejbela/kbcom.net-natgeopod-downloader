@@ -10,15 +10,6 @@ then
  GLOBAL_FOLDER_SCRIPT="$(/bin/pwd)/$GLOBAL_FOLDER_SCRIPT"
 fi
 
-read -e -p "Local image file: " -i '/usr/share/backgrounds/national.geographic-photo.of.the.day.jpg' GLOBAL_FILE_IMAGE
-
-/bin/mkdir "$GLOBAL_FOLDER_SCRIPT/etc"
-
-echo "#!/bin/bash
-
-export CONFIG_FILE_IMAGE=\"$GLOBAL_FILE_IMAGE\"
-" 1>"$GLOBAL_FOLDER_SCRIPT/etc/kbcom.net-natgeopod-downloader.bash.conf"
-
 echo "#!/bin/bash
 
 CONFIG_FOLDER_MAIN=\"$GLOBAL_FOLDER_SCRIPT\"
