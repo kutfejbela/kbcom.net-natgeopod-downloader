@@ -28,7 +28,6 @@ After=network-online.target
 
 [Service]
 Type=oneshot
-RemainAfterExit=true
 ExecStart=$GLOBAL_FOLDER_SCRIPT/run.bash
 
 [Install]

@@ -1,9 +1,11 @@
 [Unit]
-Description=Run 'natgeopod-downloader.service' six hourly and on boot
+Description=Run 'natgeopod-downloader.service' every day at 8:00 and 6 hourly
 
 [Timer]
-OnBootSec=10min
+OnActiveSec=5m
 OnUnitActiveSec=6h
+OnCalendar=*-*-* 8:00:00
+Unit=natgeopod-downloader.service
 
 [Install]
 WantedBy=timers.target
