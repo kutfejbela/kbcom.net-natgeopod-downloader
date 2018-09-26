@@ -17,7 +17,7 @@ source "$GLOBAL_FOLDER_SCRIPT/.kbcom.net-natgeopod-downloader-errors.bash"
 
 ### Begining of execution
 
-GLOBAL_URL_IMAGE=`/usr/bin/curl -sL https://www.nationalgeographic.com/photography/photo-of-the-day/ | /bin/grep 'property="og:image"' | /usr/bin/cut -d "\"" -f 4`
+GLOBAL_URL_IMAGE=`/usr/bin/curl -sSL https://www.nationalgeographic.com/photography/photo-of-the-day/ | /bin/grep 'property="og:image"' | /usr/bin/cut -d "\"" -f 4`
 
 if [ $? -ne 0 ]
 then
@@ -29,7 +29,7 @@ then
  error_showexit 11
 fi
 
-/usr/bin/curl -s $GLOBAL_URL_IMAGE > "$CONFIG_FILE_IMAGE"
+/usr/bin/curl -sS $GLOBAL_URL_IMAGE > "$CONFIG_FILE_IMAGE"
 
 if [ $? -ne 0 ]
 then
